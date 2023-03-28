@@ -1,15 +1,12 @@
 <template>
   <div>
-    ádasdsa
-    <form-login />
+    <FormLogin />
+    <HeaderPage />
   </div>
 </template>
 
 <script>
-import FormLogin from "../../components/FormLogin.vue";
-export default {
-  components: { FormLogin },
-};
+export default {}
 </script>
 
 <style lang="scss" scoped></style>
