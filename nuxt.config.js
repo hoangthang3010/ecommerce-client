@@ -15,7 +15,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/scss/main.css', '~/assets/scss/app.scss'],
+  css: ['~/assets/scss/main.css', '~/assets/scss/app.scss', '~/assets/fonts/stylesheet.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~/plugins/axios', '~/plugins/element-ui.js', '~/plugins/vue-agile', '~/plugins/on-scroll.js'],

@@ -1,26 +1,11 @@
 <template>
-  <div :class="['h-[47vw]']">
+  <div>
     <client-only placeholder="Loading...">
-      <agile ref="imageSlide" :initial-slide="slideStart" :options="optionsImageSlide">
+      <agile ref="imageSlide" :initial-slide="slideStart" :options="options">
         <div v-for="(slide, index) in slides" :key="index" class="slide" :class="`slide--${index}`">
-          <div
-            class="absolute w-[100%] top-[50%] left-[50%] flex flex-col translate-x-[-50%] translate-y-[-50%] justify-center"
-          >
-            <span class="text-center text-[66px] text-[white]">
-              {{ slide.title.toUpperCase() }}
-            </span>
-            <div class="flex justify-center">
-              <Button
-                class="text-base"
-                type="primary"
-                v-for="(item, index) in slide.button"
-                :key="index"
-                :name="item.label.toUpperCase()"
-              />
-            </div>
-          </div>
+          <slot :button="slide.button" :title="slide.title"></slot>
           <img
-            class="h-[47vw] w-[100%] object-cover"
+            class="object-cover m-auto"
             :src="slide.image ? slide.image : require('~/assets/images/not-image.png')"
             alt=""
             @error="$event.target.src = require('~/assets/images/not-image.png')"
@@ -46,7 +31,6 @@
           ></CarouselInfinite>
 */
 
-const SHOW_SLIDES = 4
 export default {
   props: {
     slides: {
@@ -106,35 +90,71 @@ export default {
       type: Number,
       default: 0,
     },
-  },
-  data() {
-    return {
-      SHOW_SLIDES,
-      asNavFor2: [],
-
-      optionsInfinite: {
-        autoplay: false,
-        centerMode: false,
-        dots: false,
-        navButtons: false,
-        responsive: [
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: SHOW_SLIDES,
-              infinite: this.slides.length > SHOW_SLIDES,
-            },
-          },
-        ],
-      },
-      optionsImageSlide: {
-        autoplay: false,
-        dots: false,
-        fade: true,
-        navButtons: true,
-      },
-    }
+    options: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 }
 </script>
-<style scoped lang="scss" />
+<style scoped lang="scss">
+::v-deep() {
+  .agile {
+    &__nav-button {
+      background: transparent;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 24px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      transition-duration: 0.3s;
+      width: 80px;
+
+      &:hover {
+        background-color: rgba(#000, 0.5);
+        opacity: 1;
+      }
+
+      &--prev {
+        left: 0;
+      }
+
+      &--next {
+        right: 0;
+      }
+    }
+    &__dots {
+      bottom: 10px;
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+    }
+    &__dot {
+      margin: 0 10px;
+      button {
+        background-color: transparent;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        display: block;
+        height: 10px;
+        font-size: 0;
+        line-height: 0;
+        margin: 0;
+        padding: 0;
+        transition-duration: 0.3s;
+        width: 10px;
+      }
+
+      &--current,
+      &:hover {
+        button {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+}
+</style>

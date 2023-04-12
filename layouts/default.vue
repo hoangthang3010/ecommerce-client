@@ -1,12 +1,21 @@
 <template>
   <div id="layouts__default" class="layouts__default" v-scroll="scrollPage">
+    <div class="fixed top-[250px] left-[500px] bg-[white] z-[100] p-[20px]">
+      compressed: {{ compressed }}
+      <br />
+      isSwiperBar: {{ isSwiperBar }}
+      <br />
+      top: {{ top }}
+      <br />
+      {{ isCLoseSwiper }}
+    </div>
     <div
       :class="[
         compressed ? 'swiper-bar-hidden' : 'swiper-bar-appear',
         'fixed top-0 z-[10] h-[50px] w-[100vw] bg-[white]',
       ]"
     >
-      <i class="el-icon-close absolute top-[50%] left-[20px] translate-y-[-50%] z-[3]" />
+      <i class="el-icon-close absolute top-[50%] left-[20px] translate-y-[-50%] z-[3]" @click="onCloseSwiper" />
       <el-carousel direction="vertical" :autoplay="true" :interval="4000" class="h-[100%]">
         <el-carousel-item
           v-for="item in [
@@ -21,16 +30,14 @@
         </el-carousel-item>
       </el-carousel>
     </div>
-    <div class="h-[50px] w-[100vw] bg-[white]"></div>
+    <div v-if="!compressed" class="h-[50px] w-[100vw] bg-[white]"></div>
     <div :class="[compressed ? 'page-header-up' : 'page-header-down', 'z-[10] sticky top-[50px] w-[100vw]']">
-      <HeaderPage />
+      <HeaderPage :compressed="compressed" :isSwiperBar="isSwiperBar" />
     </div>
     <el-container ref="elContainer" class="translate-y-[-120px]">
       <el-main style="min-height: 100vh; padding: 0; overflow-x: clip; overflow-y: unset">
         <slot name="content"></slot>
         <Nuxt />
-
-        {{ compressed }} gk
       </el-main>
     </el-container>
 
@@ -61,6 +68,8 @@ export default {
         },
       },
       compressed: false,
+      isSwiperBar: true,
+      top: 0,
     }
   },
   head() {
@@ -74,9 +83,24 @@ export default {
       __dangerouslyDisableSanitizers: ['script'], // <- this is important
     }
   },
+  computed: {
+    isCLoseSwiper() {
+      return !this.isSwiperBar && this.compressed
+    },
+  },
   methods: {
+    onCloseSwiper() {
+      this.compressed = !this.compressed
+      this.isSwiperBar = !this.isSwiperBar
+      this.top = this.$refs.elContainer.$el.getBoundingClientRect().top
+      setTimeout(() => {
+        window.scrollTo({ top: -100 })
+      }, 1000)
+    },
     scrollPage() {
-      if (this.$refs.elContainer.$el.getBoundingClientRect().top <= -100) this.compressed = true
+      this.top = this.$refs.elContainer.$el.getBoundingClientRect().top
+      if (this.$refs.elContainer.$el.getBoundingClientRect().top <= (this.isSwiperBar ? -100 : -60))
+        this.compressed = true
       else this.compressed = false
     },
   },
@@ -135,10 +159,12 @@ export default {
 .swiper-bar-hidden {
   animation-name: swiper-bar-hidden;
   animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
 .swiper-bar-appear {
   animation-name: swiper-bar-appear;
   animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
 // .swiper-bar-appear {
 //   animation-name: example1;
