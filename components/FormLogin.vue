@@ -1,7 +1,10 @@
 <template>
-  <el-form ref="form" :model="form" label-width="120px">
-    <el-form-item label="Activity name">
-      <el-input v-model="form.name"></el-input>
+  <el-form ref="form" :model="formData" label-width="120px">
+    <el-form-item label="Email">
+      <el-input v-model="formData.email"></el-input>
+    </el-form-item>
+    <el-form-item label="Password">
+      <el-input v-model="formData.password"></el-input>
     </el-form-item>
 
     <el-form-item>
@@ -14,21 +17,36 @@
 export default {
   data() {
     return {
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: '',
+      formData: {
+        email: '',
+        password: '',
+        remember_me: true,
       },
     }
   },
   methods: {
-    onSubmit() {
-      console.log('submit!')
+    async onSubmit() {
+      if (this.formData.email && this.formData.password) {
+        try {
+          this.$nuxt.$loading.start()
+          this.formData.email = this.formData.email.trim()
+          await this.$auth.loginWith('local', {
+            data: this.formData,
+          })
+          this.$router.push('/')
+        } catch (error) {
+          // this.$router.push('/login')
+        } finally {
+          this.$nuxt.$loading.finish()
+          // if (this.$auth.user) {
+          //   sessionStorage.setItem('logged', 1)
+          // } else {
+          //   if (navigator.onLine == false) {
+          //     this.errorMsg = this.$t('msg.MSG_024')
+          //   }
+          // }
+        }
+      }
     },
   },
 }

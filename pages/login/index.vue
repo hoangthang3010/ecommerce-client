@@ -1,12 +1,13 @@
 <template>
   <div>
     <FormLogin />
-    <HeaderPage />
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  layout: 'not-login',
+}
 </script>
 
 <style lang="scss" scoped></style>

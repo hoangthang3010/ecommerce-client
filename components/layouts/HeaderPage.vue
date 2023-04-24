@@ -43,7 +43,14 @@
           <i class="el-icon-goods gucci-text-base cursor-pointer" />
         </div>
         <div class="flex gap-[25px] items-center" v-else>
-          <span class="text-[11px] gucci-text-base cursor-pointer">Sign In</span>
+          <span
+            v-if="!$auth.$state.loggedIn"
+            class="text-[11px] gucci-text-base cursor-pointer"
+            @click="$router.push('login')"
+          >
+            Sign In
+          </span>
+          <span v-else class="text-[11px] gucci-text-base cursor-pointer" @click="onLogOut">Sign Out</span>
           <i class="el-icon-user gucci-text-base cursor-pointer" />
           <div class="flex items-center gucci-text-base gap-[4px]">
             <i class="el-icon-goods cursor-pointer" />
@@ -92,7 +99,12 @@ export default {
       ],
     }
   },
-  methods: {},
+  methods: {
+    async onLogOut() {
+      await this.$auth.logout()
+      await this.$auth.$storage.setState('loggedIn', false)
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>

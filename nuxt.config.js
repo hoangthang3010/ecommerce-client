@@ -13,6 +13,7 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
+  ssr: false,
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/scss/main.css', '~/assets/scss/app.scss', '~/assets/fonts/stylesheet.css'],
@@ -55,5 +56,51 @@ export default {
   styleResources: {
     scss: ['~assets/scss/_var.scss'],
     // hoistUseStatements: true  // Hoists the "@use" imports. Applies only to "sass", "scss" and "less". Default: false.
+  },
+  auth: {
+    localStorage: false,
+    cookie: {
+      options: {
+        maxAge: 60 * 60 * 24 * 30,
+      },
+    },
+    strategies: {
+      local: {
+        token: {
+          property: 'data.access_token',
+          global: true,
+          // required: false,
+          type: 'Bearer',
+        },
+        user: {
+          property: 'data',
+          // autoFetch: true
+        },
+        endpoints: {
+          login: {
+            url: `https://lux2-api-dev.lux.vmo.group/api/v1/login`,
+            method: 'post',
+          },
+          logout: {
+            url: `https://lux2-api-dev.lux.vmo.group/api/v1/logout`,
+            method: 'post',
+          },
+          user: {
+            url: `https://lux2-api-dev.lux.vmo.group/api/v1/profile`,
+            method: 'get',
+          },
+        },
+      },
+    },
+    plugins: [
+      { src: '~/plugins/auth.js', ssr: false },
+      { src: '~/plugins/nuxt-auth-local.js' },
+      // { src: '~/filters/index.js' },
+    ],
+    redirect: {
+      login: '/login',
+      callback: false,
+      home: '/',
+    },
   },
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="layouts__default" class="layouts__default" v-scroll="scrollPage">
-    <div class="fixed top-[250px] left-[500px] bg-[white] z-[100] p-[20px]">
+    <!-- <div class="fixed top-[250px] left-[500px] bg-[white] z-[100] p-[20px]">
       compressed: {{ compressed }}
       <br />
       isSwiperBar: {{ isSwiperBar }}
@@ -8,7 +8,7 @@
       top: {{ top }}
       <br />
       {{ isCLoseSwiper }}
-    </div>
+    </div> -->
     <div
       :class="[
         compressed ? 'swiper-bar-hidden' : 'swiper-bar-appear',

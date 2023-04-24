@@ -1,11 +1,11 @@
 <template>
   <div class="layouts__default">
     <!-- START: HEADER -->
-    <header id="header" class="header_not_login">
+    <!-- <header id="header" class="header_not_login">
       <div class="header__wrapper d-flex align-items-center justify-content-center">
         <div class="header_content">
           <nuxt-link to="/" class="logo d-flex align-items-center">
-            <!-- <img
+            <img
               src="~/assets/icons/icon-logo-new.svg"
               alt=""
               class="hidden-sm-and-down"
@@ -14,11 +14,11 @@
               src="~/assets/icons/icon-log-mob.svg"
               alt=""
               class="hidden-md-and-up"
-            /> -->
+            />
           </nuxt-link>
         </div>
       </div>
-    </header>
+    </header> -->
     <el-container>
       <el-main style="min-height: 100vh">
         <Nuxt />
