@@ -95,12 +95,15 @@ export default {
     plugins: [
       { src: '~/plugins/auth.js', ssr: false },
       { src: '~/plugins/nuxt-auth-local.js' },
-      // { src: '~/filters/index.js' },
+      { src: '~/filters/index.js' },
     ],
     redirect: {
       login: '/login',
       callback: false,
       home: '/',
     },
+  },
+  publicRuntimeConfig: {
+    API_URL: 'https://644642730431e885f00d1847.mockapi.io/api/v1',
   },
 }

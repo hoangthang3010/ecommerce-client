@@ -1,33 +1,37 @@
-const API_LOGOUT = "admin/logout";
+const API_LOGOUT = 'admin/logout'
 
 const auth = (axios) => ({
   logout() {
-    return axios.post(API_LOGOUT);
+    return axios.post(API_LOGOUT)
   },
 
   forgotPassword(data) {
-    return axios.post("admin/forgot-password", data);
+    return axios.post('admin/forgot-password', data)
   },
 
   changePassword(data) {
-    return axios.post("admin/change-password", data);
+    return axios.post('admin/change-password', data)
   },
 
   changePasswordForgotPassword(data) {
-    return axios.post("admin/reset-password", data);
+    return axios.post('admin/reset-password', data)
   },
 
   me(headers = {}) {
-    return axios.get("/admin/profile", {
+    return axios.get('/admin/profile', {
       headers,
-    });
+    })
   },
 
   verifyTokenResetPassword(email, token) {
-    return axios.get(
-      `admin/verify-token-reset-password?email=${email}&token=${token}`
-    );
+    return axios.get(`admin/verify-token-reset-password?email=${email}&token=${token}`)
   },
-});
+  getLists() {
+    return axios.get('/moneylover/list')
+  },
+  updateLists(id, data) {
+    return axios.put('/moneylover/list/' + id, data)
+  },
+})
 
-export default auth;
+export default auth

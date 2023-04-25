@@ -1,0 +1,74 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "list": [
+    {
+      "id": 1,
+      "active": "eat",
+      "content": "ádsa",
+      "price": 10000,
+      "date": "2023-04-23T17:00:00.000Z",
+      "dateCreated": "2023-04-23T17:00:00.000Z"
+    },
+    {
+      "createdAt": 1682331525,
+      "active": "active 2",
+      "date": 1682331525,
+      "price": 65,
+      "content": "content 2",
+      "note": "note 2",
+      "id": "2"
+    },
+    {
+      "createdAt": 1682331478,
+      "active": "active 3",
+      "date": 1682331478,
+      "price": 97,
+      "content": "content 3",
+      "note": "note 3",
+      "id": "3"
+    },
+    {
+      "createdAt": 1682331418,
+      "active": "active 4",
+      "date": 1682331418,
+      "price": 99,
+      "content": "content 4",
+      "note": "note 4",
+      "id": "4"
+    },
+    {
+      "createdAt": 1682331358,
+      "active": "active 5",
+      "date": 1682331358,
+      "price": 47,
+      "content": "content 5",
+      "note": "note 5",
+      "id": "5"
+    },
+    {
+      "createdAt": 1682331298,
+      "active": "active 6",
+      "date": 1682331298,
+      "price": 63,
+      "content": "content 6",
+      "note": "note 6",
+      "id": "6"
+    }
+  ]
+}

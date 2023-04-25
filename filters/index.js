@@ -1,12 +1,12 @@
-// import Vue from 'vue'
+import Vue from 'vue'
 // import moment from 'moment'
 
 // const dateByJapan = ['月', '火', '水', '木', '金', '土', '日']
 
-// const price = Vue.filter('price', function (value) {
-//   if (!value && value !== 0) return 0
-//   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-// })
+const price = Vue.filter('price', function (value) {
+  if (!value && value !== 0) return 0
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+})
 
 // const searchAmount = Vue.filter('searchAmount', function (value) {
 //   if (!value && value !== 0) return ''
@@ -113,14 +113,14 @@
 //   )
 // })
 
-// export default {
-//   price,
-//   formatPrice,
-//   formatDate,
-//   formatDay,
-//   formatDayFull,
-//   formatNumber,
-//   formatDateTime,
-//   formatYYYYMMDD,
-//   strippedContent,
-// }
+export default {
+  price,
+  //   formatPrice,
+  //   formatDate,
+  //   formatDay,
+  //   formatDayFull,
+  //   formatNumber,
+  //   formatDateTime,
+  //   formatYYYYMMDD,
+  //   strippedContent,
+}
