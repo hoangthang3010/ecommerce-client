@@ -104,6 +104,6 @@ export default {
     },
   },
   publicRuntimeConfig: {
-    API_URL: 'https://chat-bot-gpt-three.vercel.app',
+    API_URL: 'https://fake-restful-api-delta.vercel.app/',
   },
 }
