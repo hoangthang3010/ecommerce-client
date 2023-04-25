@@ -104,6 +104,6 @@ export default {
     },
   },
   publicRuntimeConfig: {
-    API_URL: 'https://644642730431e885f00d1847.mockapi.io/api/v1',
+    API_URL: 'https://chat-bot-gpt-three.vercel.app',
   },
 }
