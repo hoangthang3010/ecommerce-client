@@ -27,10 +27,10 @@ const auth = (axios) => ({
     return axios.get(`admin/verify-token-reset-password?email=${email}&token=${token}`)
   },
   getLists() {
-    return axios.get('/moneylover/list')
+    return axios.get('/list')
   },
   updateLists(id, data) {
-    return axios.put('/moneylover/list/' + id, data)
+    return axios.put('/list/' + id, data)
   },
 })
 
