@@ -10,6 +10,49 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
+
+      {
+        hid: 'og:url',
+        name: 'og:url',
+        content: 'https://warm-sable-30cd1b.netlify.app/',
+      },
+      {
+        hid: 'og:site_name',
+        name: 'og:site_name',
+        content: 'Dual-language, activity-focused, Hometown Tax platform for foreigners and Japanese',
+      },
+      {
+        hid: 'og:type',
+        name: 'og:type',
+        content: 'Website',
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content:
+          'https://vmo-lux2-bucket.s3.ap-northeast-1.amazonaws.com/files/chung3%40gmail.com/banner_settings/1680661787_anh-2560x1440-chat-luong-cao_015332449_bYKQCaHi.jpg',
+      },
+      {
+        hid: 'og:image:alt',
+        property: 'og:image:alt',
+        content: 'Furusato Japan',
+      },
+      {
+        hid: 'og:image:width',
+        property: 'og:image:width',
+        content: '2560',
+      },
+      {
+        hid: 'og:image:height',
+        property: 'og:image:height',
+        content: '1440',
+      },
+      {
+        hid: 'og:image:type',
+        property: 'og:image:type',
+        content: 'image/jpeg',
+      },
+      { hid: 'robots', name: 'robots', content: 'index, follow' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -104,6 +147,6 @@ export default {
     },
   },
   publicRuntimeConfig: {
-    API_URL: 'https://fake-restful-api-delta.vercel.app/',
+    API_URL: 'http://localhost:8000',
   },
 }
